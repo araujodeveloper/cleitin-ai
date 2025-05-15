@@ -1,8 +1,8 @@
 FROM ollama/ollama
 
-# Baixa o modelo ao iniciar a imagem
-RUN ollama pull gemma:3b
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 11434
 
-CMD ["ollama", "serve"]
+ENTRYPOINT ["/entrypoint.sh"]
