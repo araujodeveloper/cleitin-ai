@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   ollama:
-    build: ./ollama
+    build:
+      context: ./ollama
+      dockerfile: Dockerfile
     container_name: ollama
     tty: true
     networks:
