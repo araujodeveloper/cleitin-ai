@@ -1,17 +1,12 @@
 #!/bin/bash
 
-# Inicia o servidor Ollama em background
-ollama serve &
+# Aguarda o Ollama estar disponível (caso precise em outro cenário)
+echo "Iniciando container..."
 
-# Aguarda o Ollama estar disponível
-echo "Aguardando o Ollama iniciar..."
-until curl --silent http://localhost:11434 > /dev/null; do
-  sleep 1
-done
-
-# Faz o pull do modelo
+# Faz o pull antes de iniciar o Ollama
 echo "Fazendo o pull do modelo gemma3:1b..."
 ollama pull gemma3:1b
 
-# Aguarda o processo original (ollama serve) para manter o container ativo
-wait
+# Inicia o servidor Ollama em primeiro plano (sem &)
+echo "Iniciando o Ollama..."
+exec ollama serve

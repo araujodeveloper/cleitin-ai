@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 9000
 
-CMD ["fastapi", "run", "app/main.py", "--port", "9000"]
+CMD ["fastapi", "run", "main.py", "--port", "9000"]
