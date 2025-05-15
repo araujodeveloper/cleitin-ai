@@ -4,6 +4,7 @@ services:
   ollama:
     build: ./ollama
     container_name: ollama
+    tty: true
     networks:
       - cleitin_net
     volumes:
@@ -11,22 +12,26 @@ services:
     restart: unless-stopped
 
   fastapi-app:
-    build: ./app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
     container_name: fastapi_app
+    tty: true
+    ports:
+      - "8000:8000"
     networks:
       - cleitin_net
     depends_on:
       - ollama
     environment:
       - OLLAMA_API=http://ollama:11434
-    ports:
-      - "8000:8000"
     volumes:
       - ./app:/app
     # command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 volumes:
   ollama_data:
+
 
 networks:
   cleitin_net:
