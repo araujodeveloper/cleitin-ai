@@ -4,8 +4,8 @@ services:
   ollama:
     build: ./ollama
     container_name: ollama
-    ports:
-      - "11434:11434"
+    networks:
+      - cleitin_net
     volumes:
       - ollama_data:/root/.ollama
     restart: unless-stopped
@@ -13,6 +13,8 @@ services:
   fastapi-app:
     build: ./app
     container_name: fastapi_app
+    networks:
+      - cleitin_net
     depends_on:
       - ollama
     environment:
@@ -25,3 +27,7 @@ services:
 
 volumes:
   ollama_data:
+
+networks:
+  cleitin_net:
+    driver: bridge
