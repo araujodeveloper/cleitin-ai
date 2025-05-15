@@ -33,5 +33,3 @@ def perguntar(pergunta: Pergunta):
         f.write(resposta)
 
     return {"resposta": resposta, "arquivo": str(caminho_arquivo)}
-    
-    # return {"resposta": resposta}
