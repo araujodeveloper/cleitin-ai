@@ -29,6 +29,7 @@ services:
       - OLLAMA_API=http://ollama:11434
     volumes:
       - ./app:/app
+    restart: unless-stopped
     # command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 volumes:
