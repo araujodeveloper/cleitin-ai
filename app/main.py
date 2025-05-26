@@ -5,12 +5,18 @@ import random
 import string
 from pathlib import Path
 from langchain_ollama import OllamaLLM
+import chromadb
+
+chroma_client = chromadb.Client()
 
 OUTPUT_DIR = Path("respostas")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 OLLAMA_API = os.getenv("OLLAMA_API", "http://ollama:11434")
 llm = OllamaLLM(model="gemma3:1b", base_url=OLLAMA_API)
+
+collection = chroma_client.create_collection(name="my_collection")
+
 
 app = FastAPI()
 
