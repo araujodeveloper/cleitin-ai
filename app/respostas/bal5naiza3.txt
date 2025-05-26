@@ -1,3 +1,0 @@
-```html
-<button class="btn btn-primary rounded-bt shadow-lg">Cletin é foda!</button>
-```

@@ -1,3 +1,0 @@
-```html
-<button class="btn btn-danger warning">hello world</button>
-```
