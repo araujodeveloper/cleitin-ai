@@ -11,6 +11,14 @@ services:
       - cleitin_net
     volumes:
       - ollama_data:/root/.ollama
+    # Comentar o trecho "deploy" abaixo caso for usar apenas CPU
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     restart: unless-stopped
 
   fastapi-app:
